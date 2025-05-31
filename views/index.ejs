@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Validation Form</title>
+</head>
+<body>
+  <h1>User Registration</h1>
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+  <form action="/submit" method="POST" onsubmit="return validateForm()">
+    <label>Name:</label><br>
+    <input type="text" name="name" id="name"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" id="email"><br><br>
+
+    <label>Age:</label><br>
+    <input type="number" name="age" id="age"><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const age = document.getElementById("age").value;
+
+      if (!name || !email || !age) {
+        alert("All fields are required!");
+        return false;
+      }
+
+      if (parseInt(age) < 18) {
+        alert("Age must be 18 or older.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
